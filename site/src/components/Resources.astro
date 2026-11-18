@@ -72,7 +72,7 @@ const filterGroups = [
 					<span class="gt">{g}</span>
 					<span class="gc">{data[g].length}</span>
 				</div>
-				<div class="list">
+				<div class={data[g].some((f: any) => f.needCls) ? 'list has-fix' : 'list'}>
 					{data[g].map((f: any) => (
 						<div class="res-item" data-t={f.teacher} data-c={f.cls}>
 							<a class="main" href={previewUrl(f)} target="_blank" rel="noopener">
@@ -95,10 +95,10 @@ const filterGroups = [
 							{f.answerPath && (
 								<a class="anslink" href={previewUrl({ ext: f.answerPath.split('.').pop().toUpperCase(), path: f.answerPath })} target="_blank" rel="noopener">答案</a>
 							)}
+							<a class="dl" href={fileUrl(f.path)} download title="下载" aria-label={`下载 ${f.name}`}>↓</a>
 							{f.needCls && (
 								<a class="fix" href={fixUrl(f)} target="_blank" rel="noopener" title="补充这份资料适用的班型">补充班型</a>
 							)}
-							<a class="dl" href={fileUrl(f.path)} download title="下载" aria-label={`下载 ${f.name}`}>↓</a>
 						</div>
 					))}
 				</div>
@@ -234,8 +234,32 @@ const filterGroups = [
 		flex-direction: column;
 		border: 1px solid var(--line);
 		border-radius: 12px;
-		overflow: hidden;
 		background: var(--paper);
+	}
+	.res-item:first-child {
+		border-radius: 11px 11px 0 0;
+	}
+	.res-item:last-child {
+		border-radius: 0 0 11px 11px;
+	}
+	.res-item:only-child {
+		border-radius: 11px;
+	}
+	/* 宽屏：「补充班型」放到资料框外、下载按钮右边 */
+	@media (min-width: 900px) {
+		.list.has-fix {
+			margin-right: 6rem;
+		}
+		.res-item {
+			position: relative;
+		}
+		.fix {
+			position: absolute;
+			left: calc(100% + 0.8rem);
+			top: 50%;
+			transform: translateY(-50%);
+			margin-right: 0;
+		}
 	}
 	.res-item {
 		display: flex;
