@@ -69,6 +69,7 @@ const filterGroups = [
 								<span class="nm-wrap">
 									<span class="nm">
 										{f.name}
+										{f.answer && <span class="ans">含答案</span>}
 									</span>
 									{fields(f).length > 0 && (
 										<span class="meta">
@@ -249,6 +250,16 @@ const filterGroups = [
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+	}
+	.ans {
+		display: inline-block;
+		margin-left: 0.5rem;
+		font-size: 0.7rem;
+		padding: 0.05rem 0.5rem;
+		border-radius: 999px;
+		vertical-align: 0.1em;
+		background: color-mix(in srgb, #5db872 16%, transparent);
+		color: #3f8f53;
 	}
 	.meta {
 		display: flex;
