@@ -17,3 +17,6 @@ site/public/files/
 .claude/
 .env
 .DS_Store
+
+# 只发布 PDF，不收 LaTeX 源文件
+资料/**/*.tex

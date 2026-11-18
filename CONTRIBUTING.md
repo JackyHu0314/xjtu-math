@@ -48,4 +48,5 @@
 
 - 涂掉姓名、学号。
 - 不要提交正式出版的教材或其扫描件。
+- 只交 PDF，不要交 LaTeX、Word 源文件。
 - 新课程需要在 `site/scripts/sync.py` 的 `COURSES` 里加一行。
