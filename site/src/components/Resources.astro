@@ -16,10 +16,17 @@ const groups = Object.keys(data)
 const fileUrl = (p: string) => base + '/' + p.split('/').map(encodeURIComponent).join('/');
 // PDF 用 PDF.js 在线预览，其他格式直接下载
 const previewUrl = (f: any) => (f.ext === 'PDF' ? '/pdfjs/web/viewer.html?file=' + encodeURIComponent(fileUrl(f.path)) : fileUrl(f.path));
-// 真题、练习题不知道班型时，标「未知」并给出补充链接（GitHub「资料信息补充」表单，预填资料路径）
+// 真题、练习题缺班型、学期、任课时，标「未知」并给出补充链接（GitHub「资料信息补充」表单，预填资料路径）
 const REPO = 'https://github.com/JackyHu0314/xjtu-math';
 const needInfo = (g: string) => g === '真题' || g === '练习题';
-groups.forEach((g) => data[g].forEach((f: any) => (f.needCls = needInfo(g) && !f.cls)));
+const KEY_FIELDS: [string, string][] = [['cls', '班型'], ['termLabel', '学期'], ['teacher', '任课']];
+groups.forEach((g) =>
+	data[g].forEach((f: any) => {
+		f.missing = needInfo(g) ? KEY_FIELDS.filter(([k]) => !f[k]).map(([, label]) => label) : [];
+		f.needFix = f.missing.length > 0;
+	}),
+);
+const unknown = (f: any, k: string, label: string) => f[k] || (f.missing?.includes(label) ? '未知' : '');
 // 本课程投稿链接：GitHub「资料投稿」表单，预填课程名
 const submitUrl = `${REPO}/issues/new?template=submit.yml&title=${encodeURIComponent('[投稿] ' + course)}&course=${encodeURIComponent(course)}`;
 const fixUrl = (f: any) =>
@@ -27,10 +34,10 @@ const fixUrl = (f: any) =>
 // 每份资料下方的带字段名信息
 const fields = (f: any) =>
 	[
-		['学期', f.termLabel],
+		['学期', unknown(f, 'termLabel', '学期')],
 		['年级', f.grade],
-		['班型', f.cls || (f.needCls ? '未知' : '')],
-		['任课', f.teacher],
+		['班型', unknown(f, 'cls', '班型')],
+		['任课', unknown(f, 'teacher', '任课')],
 		['作者', f.author],
 		['上传', f.contributor],
 		['备注', f.note],
@@ -72,7 +79,7 @@ const filterGroups = [
 					<span class="gt">{g}</span>
 					<span class="gc">{data[g].length}</span>
 				</div>
-				<div class={data[g].some((f: any) => f.needCls) ? 'list has-fix' : 'list'}>
+				<div class={data[g].some((f: any) => f.needFix) ? 'list has-fix' : 'list'}>
 					{data[g].map((f: any) => (
 						<div class="res-item" data-t={f.teacher} data-c={f.cls}>
 							<a class="main" href={previewUrl(f)} target="_blank" rel="noopener">
@@ -96,8 +103,8 @@ const filterGroups = [
 								<a class="anslink" href={previewUrl({ ext: f.answerPath.split('.').pop().toUpperCase(), path: f.answerPath })} target="_blank" rel="noopener">答案</a>
 							)}
 							<a class="dl" href={fileUrl(f.path)} download title="下载" aria-label={`下载 ${f.name}`}>↓</a>
-							{f.needCls && (
-								<a class="fix" href={fixUrl(f)} target="_blank" rel="noopener" title="补充这份资料适用的班型">补充班型</a>
+							{f.needFix && (
+								<a class="fix" href={fixUrl(f)} target="_blank" rel="noopener" title={`缺：${f.missing.join('、')}`}>补充信息</a>
 							)}
 						</div>
 					))}
