@@ -153,7 +153,9 @@ h1#_top {
 /* 表格 */
 .sl-markdown-content table {
 	display: table;
+	box-sizing: border-box;
 	width: 100%;
+	max-width: 100%;
 	border-collapse: separate;
 	border-spacing: 0;
 	background: var(--paper);
@@ -170,6 +172,7 @@ h1#_top {
 .sl-markdown-content th {
 	border: none;
 	border-bottom: 1px solid var(--line);
+	padding: 0.6rem 1rem !important;
 }
 .sl-markdown-content tr:last-child td {
 	border-bottom: none;
