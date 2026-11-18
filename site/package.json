@@ -1,0 +1,26 @@
+{
+  "name": "xjtu-math-materials",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "sync": "python3 scripts/sync.py",
+    "deploy": "python3 scripts/sync.py && astro build && wrangler pages deploy dist --project-name xjtu-math-materials --branch production --commit-dirty=true"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "^7.3.9",
+    "@astrojs/starlight": "^0.43.1",
+    "astro": "^7.3.6",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "wrangler": "^4.164.0"
+  }
+}

@@ -1,0 +1,16 @@
+#:schema node_modules/wrangler/config-schema.json
+# 西交数学资料站 · 评论后端（Twikoo on Cloudflare Workers + D1）
+name = "xjtu-math-comments"
+main = "src/index.js"
+compatibility_flags = ["nodejs_compat"]
+compatibility_date = "2024-09-23"
+
+[[d1_databases]]
+binding = "DB" # available in your Worker on env.DB
+database_name = "xjtu-math-comments"
+database_id = "04db189a-0680-4dc4-a767-b7104a73e9c7"
+
+# 不开 R2（评论里传图片才需要，且开通 R2 要绑卡）
+
+[dev]
+port = 5000

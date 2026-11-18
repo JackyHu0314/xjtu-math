@@ -1,0 +1,89 @@
+name: 资料投稿
+description: 上传试卷、练习题、讲义或复习资料
+title: "[投稿] "
+labels: ["投稿"]
+body:
+  - type: input
+    id: course
+    attributes:
+      label: 课程
+      placeholder: 例如：实变函数
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 类型
+      options:
+        - 期末
+        - 期中
+        - 月考或小测
+        - 习题解答
+        - 模拟卷
+        - 讲义或笔记
+        - 复习资料（提纲、小抄、讲座）
+        - 其他
+    validations:
+      required: true
+  - type: input
+    id: term
+    attributes:
+      label: 学年学期
+      placeholder: 例如：2025-2026 春；记不清可留空
+  - type: input
+    id: teacher
+    attributes:
+      label: 任课老师
+  - type: dropdown
+    id: cls
+    attributes:
+      label: 班型
+      options:
+        - 不清楚
+        - 数学大类
+        - 强基
+        - 数学试验班
+  - type: input
+    id: grade
+    attributes:
+      label: 年级
+      placeholder: 例如：24级
+  - type: dropdown
+    id: original
+    attributes:
+      label: 原卷还是回忆版
+      options:
+        - 不适用
+        - 原卷
+        - 回忆版
+        - 不清楚
+  - type: input
+    id: author
+    attributes:
+      label: 资料作者
+      description: 资料的编写或整理者；原卷不用填
+  - type: input
+    id: contributor
+    attributes:
+      label: 署名
+      description: 网站上显示的上传人，可留空
+  - type: textarea
+    id: files
+    attributes:
+      label: 文件
+      description: 把文件拖进这个框。单个文件不超过 25 MB，多张照片请先合成 PDF。
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: 备注
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 确认
+      options:
+        - label: 已涂掉姓名、学号等个人信息
+          required: true
+        - label: 同意公开到资料站，仅供学习使用
+          required: true

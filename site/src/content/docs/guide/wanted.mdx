@@ -1,0 +1,29 @@
+---
+title: 资料征集
+description: 本站目前缺哪些资料、哪些信息还没确认
+---
+import Coverage from '../../../components/Coverage.astro';
+import cov from '../../../data/coverage.json';
+
+有资料请[投稿](/guide/contribute/)。
+
+## 缺的信息
+
+1. **各班型的培养方案**：强基、试验班、大类每学期的必修和选修课。教务系统「培养方案」页面截图即可。
+2. **公共课安排**：大学物理、程序设计、英语、思政等。
+3. **分流规则**：时间、名额、依据。
+4. **课程编号**：数学分析 I-1、I-2、II-2 等分别对应哪个学期、哪个班型。
+
+## 往年试卷
+
+按课程和学年统计期中、期末、月考，括号里是班型。
+
+<Coverage />
+
+## 待确认的资料
+
+来源或年份不明：
+
+<ul>
+	{cov.todo.map((t) => <li><b>{t.course}</b>：{t.title}（{t.note}）</li>)}
+</ul>

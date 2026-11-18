@@ -1,0 +1,94 @@
+---
+import cov from '../data/coverage.json';
+
+const { years, rows } = cov as { years: string[]; rows: { course: string; link: string; cells: string[][] }[] };
+const short = (y: string) => y.slice(2, 4) + '–' + y.slice(7, 9);
+const have = rows.reduce((s, r) => s + r.cells.filter((c) => c.length).length, 0);
+const total = rows.length * years.length;
+---
+
+<p class="cov-sum not-content">
+	{rows.length} 门课 × {years.length} 个学年，有卷子的 <b>{have}</b> / {total} 格。
+</p>
+<div class="cov-wrap not-content">
+	<table class="cov">
+		<thead>
+			<tr>
+				<th>课程</th>
+				{years.map((y) => <th>{short(y)}</th>)}
+			</tr>
+		</thead>
+		<tbody>
+			{
+				rows.map((r) => (
+					<tr>
+						<td class="c"><a href={r.link}>{r.course}</a></td>
+						{r.cells.map((c) =>
+							c.length ? (
+								<td class="ok">{c.map((x) => <span>{x}</span>)}</td>
+							) : (
+								<td class="no">缺</td>
+							),
+						)}
+					</tr>
+				))
+			}
+		</tbody>
+	</table>
+</div>
+
+<style>
+	.cov-sum {
+		color: var(--muted);
+		font-size: 0.92rem;
+		margin-bottom: 0.8rem;
+	}
+	.cov-sum b {
+		color: var(--clay);
+	}
+	.cov-wrap {
+		overflow-x: auto;
+		border: 1px solid var(--line);
+		border-radius: 12px;
+	}
+	.cov {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.82rem;
+		background: var(--paper);
+	}
+	.cov th,
+	.cov td {
+		padding: 0.5rem 0.6rem;
+		border-bottom: 1px solid var(--line);
+		text-align: center;
+		white-space: nowrap;
+	}
+	.cov th {
+		background: var(--surface-2);
+		font-weight: 600;
+		color: var(--ink);
+	}
+	.cov td.c {
+		text-align: left;
+		font-weight: 500;
+	}
+	.cov td.c a {
+		color: var(--ink);
+		text-decoration: none;
+	}
+	.cov td.c a:hover {
+		color: var(--clay);
+	}
+	.cov tr:last-child td {
+		border-bottom: none;
+	}
+	.ok span {
+		display: block;
+		color: #3f8f53;
+		font-weight: 500;
+	}
+	.no {
+		color: var(--sl-color-gray-4);
+	}
+</style>

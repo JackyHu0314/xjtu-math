@@ -1,0 +1,360 @@
+---
+import { getCollection } from 'astro:content';
+import resources from '../data/resources.json';
+
+const docs = await getCollection('docs');
+const courseCount = docs.filter((d) => d.id.startsWith('courses/')).length;
+const all = Object.values(resources as Record<string, Record<string, any[]>>);
+const fileCount = all.reduce((s, c) => s + Object.entries(c).filter(([k]) => k !== 'books').reduce((t, [, v]) => t + v.length, 0), 0);
+const examCount = all.reduce((s, c) => s + (c['真题']?.length ?? 0), 0);
+
+// 卡片上显示这门课有几份真题
+const stat = (name: string) => {
+	const ex: any[] = (resources as any)[name]?.['真题'] ?? [];
+	if (!ex.length) return '暂无真题';
+	return `${ex.length} 份真题`;
+};
+const classes = [
+	{ sym: 'ε', title: '数学分析', desc: stat('数学分析'), href: '/courses/foundation/mathematical-analysis/' },
+	{ sym: 'A', title: '高等代数与几何', desc: stat('高等代数与几何'), href: '/courses/foundation/advanced-algebra/' },
+	{ sym: 'p', title: '数论', desc: stat('数论'), href: '/courses/foundation/number-theory/' },
+];
+const majors = [
+	{ sym: '∫', title: '数学与应用数学', desc: '拓扑 · 微分几何 · 数值分析 · 运筹', href: '/plans/math/' },
+	{ sym: 'λ', title: '信息与计算科学', desc: '矩阵分析 · 最优化 · PDE 数值解 · AI 算法', href: '/plans/icm/' },
+	{ sym: 'σ', title: '统计学', desc: '回归 · 多元统计 · 时间序列 · 贝叶斯', href: '/plans/stat/' },
+];
+const hot = [
+	['数学分析', '/courses/foundation/mathematical-analysis/'],
+	['高等代数与几何', '/courses/foundation/advanced-algebra/'],
+	['实变函数', '/courses/major-basic/real-analysis/'],
+	['常微分方程', '/courses/major-basic/ode/'],
+	['复变函数', '/courses/major-basic/complex-analysis/'],
+	['泛函分析', '/courses/major-basic/functional-analysis/'],
+	['概率论', '/courses/major-basic/probability/'],
+];
+---
+
+<div class="home">
+	<section class="hero">
+		<p class="eyebrow">西安交通大学 数学与统计学院</p>
+		<h1 class="display">西交数学资料站</h1>
+		<p class="lede">往年试卷 · 答案 · 高频考点</p>
+
+		<button class="ask" type="button" id="home-search" aria-label="搜索">
+			<span class="ask-text">搜索课程或试卷</span>
+			<span class="ask-btn" aria-hidden="true">↑</span>
+		</button>
+
+		<div class="chips">
+			{hot.map(([n, h]) => <a class="chip" href={h}>{n}</a>)}
+		</div>
+
+		<p class="stats">
+			<span><b>{fileCount}</b> 份资料</span><span class="dot">·</span>
+			<span><b>{examCount}</b> 份真题</span><span class="dot">·</span>
+			<span><b>{courseCount}</b> 门课程</span>
+		</p>
+	</section>
+
+	<section class="band">
+		<div class="band-head">
+			<h2 class="h2">大一基础课</h2>
+		</div>
+		<div class="grid">
+			{
+				classes.map((c) => (
+					<a class="feature" href={c.href}>
+						<span class="sym">{c.sym}</span>
+						<span class="ft">{c.title}</span>
+						<span class="fd">{c.desc}</span>
+						<span class="more">进入 →</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="band">
+		<div class="band-head">
+			<h2 class="h2">专业课表</h2>
+		</div>
+		<div class="grid">
+			{
+				majors.map((c) => (
+					<a class="tile" href={c.href}>
+						<span class="sym small">{c.sym}</span>
+						<span class="ft">{c.title}</span>
+						<span class="fd">{c.desc}</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="callout">
+		<div>
+			<h2 class="h2 on">投稿</h2>
+			<p class="co-text">试卷、笔记、复习资料。上传前请涂掉姓名和学号。</p>
+		</div>
+		<a class="btn-light" href="/guide/contribute/">投稿方式</a>
+	</section>
+</div>
+
+<script is:inline>
+	document.addEventListener('click', (e) => {
+		if (e.target instanceof Element && e.target.closest('#home-search')) {
+			e.stopPropagation();
+			setTimeout(() => document.querySelector('site-search button[data-open-modal]')?.click(), 0);
+		}
+	});
+</script>
+
+<style>
+	.home :global(*) {
+		margin-top: 0;
+	}
+	.home {
+		max-width: 1080px;
+		margin: 0 auto;
+	}
+
+	/* ---------- Hero ---------- */
+	.hero {
+		text-align: center;
+		padding: 4.5rem 1rem 3.5rem;
+	}
+	.eyebrow {
+		font-size: 0.75rem;
+		font-weight: 500;
+		letter-spacing: 0.12em;
+		color: var(--muted);
+		margin-bottom: 1.5rem !important;
+	}
+	.display {
+		font-family: var(--font-serif);
+		font-weight: 400;
+		font-size: clamp(2.6rem, 6.5vw, 4rem);
+		line-height: 1.12;
+		letter-spacing: -0.02em;
+		color: var(--ink);
+		margin-bottom: 1.2rem !important;
+	}
+	.lede {
+		font-size: 1.1rem;
+		line-height: 1.6;
+		color: var(--muted);
+		margin-bottom: 2.4rem !important;
+	}
+	.ask {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		max-width: 640px;
+		margin: 0 auto 1rem;
+		padding: 0.9rem 0.9rem 0.9rem 1.3rem;
+		min-height: 64px;
+		border-radius: 18px;
+		border: 1px solid var(--line);
+		background: var(--surface);
+		box-shadow: 0 1px 3px rgba(20, 20, 19, 0.06), 0 8px 24px -16px rgba(20, 20, 19, 0.18);
+		cursor: text;
+		font: inherit;
+		transition: border-color 0.15s, box-shadow 0.15s;
+	}
+	.ask:hover {
+		border-color: color-mix(in srgb, var(--clay) 50%, var(--line));
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--clay) 15%, transparent);
+	}
+	.ask-text {
+		color: var(--muted);
+		font-size: 1rem;
+		text-align: left;
+	}
+	.ask-btn {
+		flex: none;
+		width: 34px;
+		height: 34px;
+		display: grid;
+		place-items: center;
+		border-radius: 10px;
+		background: var(--clay);
+		color: #fff;
+		font-weight: 700;
+	}
+	.chips {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.5rem;
+		max-width: 680px;
+		margin: 0 auto 2.2rem;
+	}
+	.chip {
+		margin: 0 !important;
+		padding: 0.4rem 0.9rem;
+		border-radius: 8px;
+		border: 1px solid var(--line);
+		background: var(--paper);
+		color: var(--sl-color-gray-2);
+		font-size: 0.875rem;
+		text-decoration: none;
+		transition: background 0.15s, color 0.15s;
+	}
+	.chip:hover {
+		background: var(--surface-2);
+		color: var(--ink);
+	}
+	.stats {
+		font-size: 0.875rem;
+		color: var(--muted);
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+	.stats b {
+		color: var(--ink);
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+	}
+	.dot {
+		color: var(--line);
+	}
+
+	/* ---------- Bands ---------- */
+	.band {
+		padding: 3rem 0 0.5rem;
+		border-top: 1px solid var(--line);
+		margin-top: 1rem !important;
+	}
+	.band-head {
+		margin-bottom: 1.6rem;
+	}
+	.cap {
+		font-size: 0.75rem;
+		font-weight: 500;
+		letter-spacing: 0.12em;
+		color: var(--clay);
+		margin-bottom: 0.4rem !important;
+	}
+	.h2 {
+		font-family: var(--font-serif);
+		font-weight: 400;
+		font-size: 2rem;
+		letter-spacing: -0.015em;
+		line-height: 1.2;
+		color: var(--ink);
+		border: none !important;
+		padding: 0 !important;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
+	}
+	.feature,
+	.tile {
+		margin: 0 !important;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		text-decoration: none;
+		color: inherit;
+		border-radius: 12px;
+		transition: border-color 0.15s, background 0.15s;
+	}
+	.feature {
+		padding: 1.8rem;
+		background: var(--surface-2);
+		border: 1px solid transparent;
+	}
+	.feature:hover {
+		border-color: color-mix(in srgb, var(--clay) 40%, transparent);
+	}
+	.tile {
+		padding: 1.4rem 1.6rem;
+		background: var(--paper);
+		border: 1px solid var(--line);
+	}
+	.tile:hover {
+		background: var(--surface);
+	}
+	.sym {
+		font-family: var(--font-serif);
+		font-style: italic;
+		font-size: 2.2rem;
+		line-height: 1;
+		color: var(--clay);
+		margin-bottom: 0.6rem;
+	}
+	.sym.small {
+		font-size: 1.6rem;
+		margin-bottom: 0.3rem;
+	}
+	.ft {
+		font-size: 1.1rem;
+		font-weight: 500;
+		color: var(--ink);
+	}
+	.fd {
+		font-size: 0.9rem;
+		line-height: 1.55;
+		color: var(--muted);
+	}
+	.more {
+		margin-top: 0.8rem;
+		font-size: 0.85rem;
+		font-weight: 500;
+		color: var(--clay);
+	}
+
+	/* ---------- Coral callout ---------- */
+	.callout {
+		margin-top: 3.5rem !important;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2rem;
+		padding: 2.6rem 3rem;
+		border-radius: 12px;
+		background: var(--clay);
+	}
+	.h2.on {
+		color: #fff;
+		font-size: 1.75rem;
+		margin-bottom: 0.4rem !important;
+	}
+	.co-text {
+		color: rgba(255, 255, 255, 0.88);
+		font-size: 0.95rem;
+	}
+	.btn-light {
+		flex: none;
+		padding: 0.7rem 1.3rem;
+		border-radius: 8px;
+		background: #faf9f5;
+		color: #141413;
+		font-weight: 500;
+		font-size: 0.9rem;
+		text-decoration: none;
+	}
+	.btn-light:hover {
+		background: #fff;
+	}
+
+	@media (max-width: 768px) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
+		.callout {
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 2rem;
+		}
+		.ask-text {
+			font-size: 0.9rem;
+		}
+	}
+</style>

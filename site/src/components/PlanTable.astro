@@ -1,0 +1,39 @@
+---
+import plans from '../data/plans.json';
+
+interface Props {
+	major: string;
+}
+const { major } = Astro.props;
+const rows: any[] = (plans as any)[major] ?? [];
+const kinds = [...new Set(rows.map((r) => r['课程属性']))];
+const total = (rs: any[]) => rs.reduce((s, r) => s + Number(r['学分']), 0);
+---
+
+{
+	kinds.map((k) => {
+		const rs = rows.filter((r) => r['课程属性'] === k).sort((a, b) => a['开课学期'].localeCompare(b['开课学期']));
+		return (
+			<>
+				<h3>{k}（{rs.length} 门，{total(rs)} 学分）</h3>
+				<table>
+					<thead>
+						<tr><th>课程</th><th>代码</th><th>学分</th><th>学时</th><th>开课学期</th><th>考核</th></tr>
+					</thead>
+					<tbody>
+						{rs.map((r) => (
+							<tr>
+								<td>{r.link ? <a href={r.link}>{r['课程名称']}</a> : r['课程名称']}</td>
+								<td><code>{r['课程代码']}</code></td>
+								<td>{r['学分']}</td>
+								<td>{r['总学时']}</td>
+								<td>{r['开课学期']}</td>
+								<td>{r['考核方式']}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</>
+		);
+	})
+}

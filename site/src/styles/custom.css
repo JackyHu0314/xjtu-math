@@ -1,0 +1,227 @@
+/* ============ 西交数学资料站 · 暖色纸张风 ============ */
+
+/* ---------- 字体 ---------- */
+:root {
+	--sl-font: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'HarmonyOS Sans SC', 'Microsoft YaHei', sans-serif;
+	--sl-font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+	--font-serif: 'Tiempos Headline', 'Cormorant Garamond', 'EB Garamond', Garamond, 'Times New Roman', 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', serif;
+}
+
+/* ---------- 配色：浅色（纸张） ---------- */
+:root[data-theme='light'] {
+	--paper: #faf9f5;
+	--surface: #f5f0e8;
+	--surface-2: #efe9de;
+	--line: #e6dfd8;
+	--ink: #141413;
+	--muted: #6c6a64;
+	--clay: #cc785c;
+	--clay-active: #a9583e;
+	--clay-soft: #f3e3da;
+
+	--sl-color-accent-low: #f3e3da;
+	--sl-color-accent: #cc785c;
+	--sl-color-accent-high: #a9583e;
+	--sl-color-white: #141413;
+	--sl-color-gray-1: #252523;
+	--sl-color-gray-2: #3d3d3a;
+	--sl-color-gray-3: #6c6a64;
+	--sl-color-gray-4: #8e8b82;
+	--sl-color-gray-5: #e6dfd8;
+	--sl-color-gray-6: #f5f0e8;
+	--sl-color-gray-7: #faf9f5;
+	--sl-color-black: #faf9f5;
+	--sl-color-bg-nav: #faf9f5;
+	--sl-color-bg-sidebar: #f5f0e8;
+	--sl-color-hairline: #e6dfd8;
+	--sl-color-hairline-light: #ebe6df;
+	--sl-color-hairline-shade: #e6dfd8;
+}
+
+/* ---------- 配色：深色（暖炭灰） ---------- */
+:root,
+:root[data-theme='dark'] {
+	--paper: #1f1e1b;
+	--surface: #252320;
+	--surface-2: #2c2a26;
+	--line: #3a3732;
+	--ink: #faf9f5;
+	--muted: #a09d96;
+	--clay: #d4856a;
+	--clay-active: #cc785c;
+	--clay-soft: #3d2b23;
+
+	--sl-color-accent-low: #3d2b23;
+	--sl-color-accent: #d4856a;
+	--sl-color-accent-high: #f0c8b6;
+	--sl-color-white: #faf9f5;
+	--sl-color-gray-1: #ebe8e0;
+	--sl-color-gray-2: #cfccc3;
+	--sl-color-gray-3: #a09d96;
+	--sl-color-gray-4: #75726b;
+	--sl-color-gray-5: #3a3732;
+	--sl-color-gray-6: #252320;
+	--sl-color-black: #1f1e1b;
+	--sl-color-bg-nav: #1f1e1b;
+	--sl-color-bg-sidebar: #181715;
+	--sl-color-hairline: #3a3732;
+	--sl-color-hairline-light: #3a3732;
+	--sl-color-hairline-shade: #181715;
+}
+/* 让浅色变量覆盖默认 :root */
+:root[data-theme='light'] {
+	color-scheme: light;
+}
+
+body {
+	background: var(--paper);
+}
+
+/* ---------- 顶栏 & 侧边栏 ---------- */
+header.header {
+	background: var(--paper);
+	border-bottom: 1px solid var(--line);
+}
+.sidebar-pane {
+	background: var(--sl-color-bg-sidebar) !important;
+	border-inline-end: 1px solid var(--line) !important;
+}
+.site-title {
+	font-family: var(--font-serif);
+	font-weight: 600;
+	font-size: 1.2rem;
+	color: var(--ink) !important;
+	letter-spacing: 0.01em;
+}
+.site-title::before {
+	content: '∑';
+	color: var(--clay);
+	font-weight: 700;
+	margin-right: 0.4rem;
+}
+nav.sidebar a {
+	border-radius: 8px;
+	color: var(--sl-color-gray-2);
+	transition: background 0.15s;
+}
+nav.sidebar a:hover:not([aria-current='page']) {
+	background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+nav.sidebar a[aria-current='page'] {
+	background: color-mix(in srgb, var(--ink) 8%, transparent) !important;
+	color: var(--ink) !important;
+	font-weight: 600;
+}
+nav.sidebar .group-label .large {
+	font-family: var(--font-serif);
+	font-weight: 600;
+}
+
+/* ---------- 正文 ---------- */
+.content-panel {
+	border-top: none !important;
+}
+h1#_top,
+.sl-markdown-content h2,
+.sl-markdown-content h3 {
+	font-family: var(--font-serif);
+	font-weight: 400;
+	color: var(--ink);
+	letter-spacing: -0.01em;
+}
+h1#_top {
+	font-size: 2.6rem;
+	letter-spacing: -0.02em;
+}
+.sl-markdown-content .sl-heading-wrapper.level-h2 {
+	padding-top: 1rem;
+	border-top: 1px solid var(--line);
+	margin-top: 2.5rem;
+}
+.sl-markdown-content {
+	line-height: 1.8;
+}
+.sl-markdown-content a:not(.main):not(.dl):not(.pill) {
+	color: var(--clay);
+	text-decoration-color: color-mix(in srgb, var(--clay) 35%, transparent);
+	text-underline-offset: 3px;
+}
+.sl-markdown-content a:not(.main):not(.dl):not(.pill):hover {
+	text-decoration-color: var(--clay);
+}
+
+/* 表格 */
+.sl-markdown-content table {
+	display: table;
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	background: var(--paper);
+	border: 1px solid var(--line);
+	border-radius: 12px;
+	overflow: hidden;
+}
+.sl-markdown-content th {
+	background: var(--surface-2);
+	font-weight: 600;
+	color: var(--ink);
+}
+.sl-markdown-content td,
+.sl-markdown-content th {
+	border: none;
+	border-bottom: 1px solid var(--line);
+}
+.sl-markdown-content tr:last-child td {
+	border-bottom: none;
+}
+
+/* 提示框：柔和纸片 */
+.starlight-aside {
+	border-radius: 12px;
+	border: 1px solid var(--line);
+	border-inline-start: 3px solid var(--clay);
+	background: var(--surface-2);
+}
+.starlight-aside--note .starlight-aside__title,
+.starlight-aside--note .starlight-aside__icon {
+	color: var(--clay);
+}
+
+/* Starlight 卡片 */
+.card,
+.sl-link-card {
+	background: var(--surface) !important;
+	border: 1px solid var(--line) !important;
+	border-radius: 14px !important;
+	box-shadow: none;
+	transition: border-color 0.15s, box-shadow 0.15s;
+}
+.sl-link-card:hover,
+.card:hover {
+	border-color: color-mix(in srgb, var(--clay) 45%, var(--line)) !important;
+	box-shadow: 0 1px 3px rgba(20, 20, 19, 0.08);
+}
+
+/* 搜索框 */
+site-search button[data-open-modal] {
+	border-radius: 10px !important;
+	background: var(--surface) !important;
+	border: 1px solid var(--line) !important;
+}
+
+/* 行内代码 */
+.sl-markdown-content code:not(pre code) {
+	background: var(--surface-2);
+	border: 1px solid var(--line);
+	border-radius: 6px;
+	padding: 0.05em 0.35em;
+	font-size: 0.88em;
+}
+
+/* 首页：隐藏默认标题栏 */
+main:has(.home) .content-panel:has(h1#_top) {
+	display: none;
+}
+main:has(.home) .content-panel {
+	padding-top: 1rem;
+}

@@ -1,0 +1,19 @@
+# 版权书：只在本地保留，网站只列书名，绝不上传
+资料/参考书_版权所有_不公开/
+
+# 本地工作文件夹
+待处理/
+待整理/
+模板对比/
+
+# 依赖与构建产物
+node_modules/
+dist/
+.astro/
+.wrangler/
+site/public/files/
+
+# 本地工具与系统文件
+.claude/
+.env
+.DS_Store

@@ -1,0 +1,324 @@
+---
+import resources from '../data/resources.json';
+
+interface Props {
+	course: string;
+}
+const { course } = Astro.props;
+const data: Record<string, any> = (resources as any)[course] ?? {};
+// 文件根地址：本地和 Cloudflare Pages 上都是 /files
+const base = (import.meta.env.PUBLIC_FILES_BASE ?? '/files').replace(/\/$/, '');
+const order = ['真题', '练习题', '讲义与复习'];
+const idx = (k: string) => (order.includes(k) ? order.indexOf(k) : 99);
+const groups = Object.keys(data)
+	.filter((k) => k !== 'books')
+	.sort((a, b) => idx(a) - idx(b));
+const fileUrl = (p: string) => base + '/' + p.split('/').map(encodeURIComponent).join('/');
+// PDF 用 PDF.js 在线预览，其他格式直接下载
+const previewUrl = (f: any) => (f.ext === 'PDF' ? '/pdfjs/web/viewer.html?file=' + encodeURIComponent(fileUrl(f.path)) : fileUrl(f.path));
+// 每份资料下方的带字段名信息
+const fields = (f: any) =>
+	[
+		['学期', f.termLabel],
+		['年级', f.grade],
+		['班型', f.cls],
+		['任课', f.teacher],
+		['作者', f.author],
+		['上传', f.contributor],
+		['备注', f.note],
+	].filter(([, v]) => v) as [string, string][];
+const allFiles = groups.flatMap((g) => data[g]);
+const uniq = (key: string) => [...new Set(allFiles.map((f: any) => f[key]).filter(Boolean))] as string[];
+// 筛选：按任课老师、班型，两组可以组合
+const filterGroups = [
+	{ k: 't', label: '任课', values: uniq('teacher') },
+	{ k: 'c', label: '班型', values: uniq('cls') },
+].filter((g) => g.values.length);
+---
+
+<div class="res not-content" id="res">
+	{
+		filterGroups.length > 0 && (
+			<div class="filters">
+				{filterGroups.map((g) => (
+					<div class="frow" data-k={g.k}>
+						<span class="flabel">{g.label}</span>
+						<button class="fchip on" data-v="">全部</button>
+						{g.values.map((v) => (
+							<button class="fchip" data-v={v}>{v}</button>
+						))}
+					</div>
+				))}
+			</div>
+		)
+	}
+	<div class="empty none" hidden>没有符合条件的资料。</div>
+	{groups.length === 0 && <div class="empty">暂无资料。<a href="/guide/contribute/">投稿</a></div>}
+	{
+		groups.map((g) => (
+			<section>
+				<div class="gh">
+					<span class="gt">{g}</span>
+					<span class="gc">{data[g].length}</span>
+				</div>
+				<div class="list">
+					{data[g].map((f: any) => (
+						<div class="res-item" data-t={f.teacher} data-c={f.cls}>
+							<a class="main" href={previewUrl(f)} target="_blank" rel="noopener">
+								<span class={`ext ext-${f.ext.toLowerCase()}`}>{f.ext}</span>
+								<span class="nm-wrap">
+									<span class="nm">
+										{f.name}
+									</span>
+									{fields(f).length > 0 && (
+										<span class="meta">
+											{fields(f).map(([k, v]) => (
+												<span class="kv"><i>{k}</i>{v}</span>
+											))}
+										</span>
+									)}
+								</span>
+								<span class="sz">{f.size}</span>
+							</a>
+							<a class="dl" href={fileUrl(f.path)} download title="下载" aria-label={`下载 ${f.name}`}>↓</a>
+						</div>
+					))}
+				</div>
+			</section>
+		))
+	}
+	{
+		data.books && (
+			<section>
+				<div class="gh">
+					<span class="gt">教材</span>
+					<span class="gc">{data.books.length}</span>
+				</div>
+				<div class="books">
+					{data.books.map((b: string) => (
+						<span class="book">{b}</span>
+					))}
+				</div>
+				<p class="note">目前收集到的版本，不代表推荐；各老师实际使用的教材待补充。受版权保护，只列书名。</p>
+			</section>
+		)
+	}
+</div>
+
+<script>
+	document.querySelectorAll<HTMLElement>('.res').forEach((root) => {
+		const state: Record<string, string> = {};
+		const apply = () => {
+			root.querySelectorAll<HTMLElement>('.res-item').forEach((it) => {
+				it.hidden = Object.entries(state).some(([k, v]) => v && it.dataset[k] !== v);
+			});
+			root.querySelectorAll<HTMLElement>('section').forEach((sec) => {
+				sec.hidden = sec.querySelector('.res-item') !== null && !sec.querySelector('.res-item:not([hidden])');
+			});
+			const none = root.querySelector<HTMLElement>('.none');
+			if (none) none.hidden = !!root.querySelector('.res-item:not([hidden])') || !root.querySelector('.res-item');
+		};
+		root.querySelectorAll<HTMLElement>('.frow').forEach((row) => {
+			row.querySelectorAll<HTMLButtonElement>('.fchip').forEach((b) =>
+				b.addEventListener('click', () => {
+					row.querySelectorAll('.fchip').forEach((x) => x.classList.toggle('on', x === b));
+					state[row.dataset.k!] = b.dataset.v ?? '';
+					apply();
+				}),
+			);
+		});
+	});
+</script>
+
+<style>
+	.res {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		margin-top: 1rem;
+	}
+	.filters {
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+		margin-bottom: -0.6rem;
+	}
+	.frow {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.4rem;
+	}
+	.flabel {
+		width: 2.5rem;
+		font-size: 0.78rem;
+		color: var(--muted);
+	}
+	.fchip {
+		font: inherit;
+		font-size: 0.82rem;
+		padding: 0.3rem 0.8rem;
+		border-radius: 999px;
+		border: 1px solid var(--line);
+		background: var(--paper);
+		color: var(--sl-color-gray-2);
+		cursor: pointer;
+	}
+	.fchip.on {
+		background: var(--ink);
+		border-color: var(--ink);
+		color: var(--paper);
+	}
+	.res-item[hidden],
+	.empty[hidden],
+	section[hidden] {
+		display: none;
+	}
+	.gh {
+		display: flex;
+		align-items: baseline;
+		gap: 0.6rem;
+		margin-bottom: 0.75rem;
+	}
+	.gt {
+		font-family: var(--font-serif);
+		font-size: 1.35rem;
+		letter-spacing: -0.01em;
+		color: var(--ink);
+	}
+	.gc {
+		font-size: 0.75rem;
+		font-weight: 500;
+		padding: 0.1rem 0.6rem;
+		border-radius: 999px;
+		background: var(--surface-2);
+		color: var(--muted);
+	}
+	.list {
+		display: flex;
+		flex-direction: column;
+		border: 1px solid var(--line);
+		border-radius: 12px;
+		overflow: hidden;
+		background: var(--paper);
+	}
+	.res-item {
+		display: flex;
+		align-items: center;
+		transition: background 0.12s;
+	}
+	.res-item + .res-item {
+		border-top: 1px solid var(--line);
+	}
+	.res-item:hover {
+		background: var(--surface);
+	}
+	.main {
+		flex: 1;
+		min-width: 0;
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: 0.9rem;
+		padding: 0.8rem 0.4rem 0.8rem 1.1rem;
+		text-decoration: none;
+		color: var(--ink);
+	}
+	.ext {
+		font-family: var(--sl-font-mono);
+		font-size: 0.66rem;
+		font-weight: 600;
+		width: 40px;
+		text-align: center;
+		padding: 0.22rem 0;
+		border-radius: 4px;
+		background: var(--surface-2);
+		color: var(--muted);
+	}
+	.ext-pdf {
+		background: var(--clay-soft);
+		color: var(--clay-active);
+	}
+	.nm-wrap {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+	}
+	.nm {
+		font-size: 0.95rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.15rem 0.9rem;
+		margin-top: 0.2rem;
+		font-size: 0.76rem;
+		color: var(--sl-color-gray-2);
+	}
+	.kv i {
+		font-style: normal;
+		color: var(--muted);
+		margin-right: 0.3rem;
+	}
+	.sz {
+		font-size: 0.8rem;
+		color: var(--muted);
+		font-variant-numeric: tabular-nums;
+	}
+	.dl {
+		flex: none;
+		width: 30px;
+		height: 30px;
+		margin-right: 1rem;
+		display: grid;
+		place-items: center;
+		border-radius: 50%;
+		border: 1px solid var(--line);
+		color: var(--muted);
+		font-size: 0.85rem;
+		text-decoration: none;
+		transition: all 0.12s;
+	}
+	.dl:hover {
+		background: var(--clay);
+		border-color: var(--clay);
+		color: #fff;
+	}
+	.books {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+	.book {
+		font-family: var(--font-serif);
+		font-style: italic;
+		font-size: 0.92rem;
+		padding: 0.45rem 0.85rem;
+		border-radius: 8px;
+		background: var(--surface-2);
+		color: var(--sl-color-gray-2);
+	}
+	.note {
+		font-size: 0.8rem;
+		color: var(--muted);
+		margin-top: 0.7rem;
+	}
+	.empty {
+		padding: 1.6rem;
+		text-align: center;
+		border-radius: 12px;
+		background: var(--surface-2);
+		color: var(--muted);
+	}
+	@media (max-width: 640px) {
+		.main {
+			grid-template-columns: auto 1fr;
+		}
+		.sz {
+			display: none;
+		}
+	}
+</style>

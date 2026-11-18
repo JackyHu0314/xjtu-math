@@ -1,0 +1,63 @@
+---
+import plans from '../data/plans.json';
+import resources from '../data/resources.json';
+
+interface Props {
+	course: string;
+}
+const { course } = Astro.props;
+const rows = Object.entries(plans as Record<string, any[]>).flatMap(([major, rs]) =>
+	rs.filter((r) => r['课程名称'] === course).map((r) => ({ major, ...r })),
+);
+const r = rows[0];
+const res: Record<string, any[]> = (resources as any)[course] ?? {};
+const files = Object.entries(res).filter(([k]) => k !== 'books').reduce((s, [, v]) => s + v.length, 0);
+const short: Record<string, string> = { 数学与应用数学: '应数', 信息与计算科学: '信计', 统计学: '统计' };
+---
+
+<div class="meta not-content">
+	{r && <span class="pill"><i>代码</i>{r['课程代码']}</span>}
+	{r && <span class="pill"><i>学分</i>{r['学分']}</span>}
+	{r && <span class="pill"><i>学时</i>{r['总学时']}</span>}
+	{r && <span class="pill"><i>考核</i>{r['考核方式']}</span>}
+	{rows.length > 0 && <span class="pill"><i>修读</i>{rows.map((x) => short[x.major] ?? x.major).join(' · ')}</span>}
+	<a class="pill hl" href="#res"><i>资料</i>{files} 份 ↓</a>
+</div>
+
+<style>
+	.meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 0.2rem 0 1.8rem;
+	}
+	.pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.32rem 0.8rem;
+		border-radius: 999px;
+		background: var(--surface-2);
+		font-size: 0.85rem;
+		font-weight: 500;
+		color: var(--ink);
+		text-decoration: none;
+		font-variant-numeric: tabular-nums;
+	}
+	.pill i {
+		font-style: normal;
+		font-weight: 400;
+		font-size: 0.75rem;
+		color: var(--muted);
+	}
+	.hl {
+		background: var(--clay);
+		color: #fff;
+	}
+	.hl i {
+		color: rgba(255, 255, 255, 0.8);
+	}
+	.hl:hover {
+		background: var(--clay-active);
+	}
+</style>

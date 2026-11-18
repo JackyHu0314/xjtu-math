@@ -1,0 +1,445 @@
+{
+ "years": [
+  "2020-2021",
+  "2021-2022",
+  "2022-2023",
+  "2023-2024",
+  "2024-2025",
+  "2025-2026"
+ ],
+ "rows": [
+  {
+   "course": "数学分析",
+   "link": "/courses/foundation/mathematical-analysis/",
+   "cells": [
+    [
+     "月考",
+     "期末",
+     "期中"
+    ],
+    [],
+    [],
+    [
+     "期末（强基）",
+     "期末（数学试验班）"
+    ],
+    [],
+    [
+     "期末",
+     "期中"
+    ]
+   ]
+  },
+  {
+   "course": "高等代数与几何",
+   "link": "/courses/foundation/advanced-algebra/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+     "期末"
+    ]
+   ]
+  },
+  {
+   "course": "数论",
+   "link": "/courses/foundation/number-theory/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "常微分方程",
+   "link": "/courses/major-basic/ode/",
+   "cells": [
+    [],
+    [],
+    [],
+    [
+     "期末"
+    ],
+    [],
+    [
+     "期末（强基）"
+    ]
+   ]
+  },
+  {
+   "course": "抽象代数",
+   "link": "/courses/major-basic/abstract-algebra/",
+   "cells": [
+    [],
+    [],
+    [],
+    [
+     "期末"
+    ],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "实变函数",
+   "link": "/courses/major-basic/real-analysis/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [
+     "期中（强基）",
+     "期末"
+    ],
+    [
+     "期中（强基）",
+     "期末（强基）"
+    ]
+   ]
+  },
+  {
+   "course": "复变函数",
+   "link": "/courses/major-basic/complex-analysis/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [
+     "期末"
+    ],
+    [
+     "期末（数学试验班）",
+     "期末（强基）"
+    ]
+   ]
+  },
+  {
+   "course": "概率论",
+   "link": "/courses/major-basic/probability/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [
+     "期末"
+    ],
+    [
+     "期末（强基）"
+    ]
+   ]
+  },
+  {
+   "course": "概率论基础",
+   "link": "/courses/major-basic/probability-foundations/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "数理统计",
+   "link": "/courses/major-basic/mathematical-statistics/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "泛函分析",
+   "link": "/courses/major-basic/functional-analysis/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "偏微分方程",
+   "link": "/courses/major-basic/pde/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "随机过程",
+   "link": "/courses/major-basic/stochastic-process/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [
+     "期末"
+    ],
+    []
+   ]
+  },
+  {
+   "course": "测度论",
+   "link": "/courses/major-basic/measure-theory/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "机器学习基础",
+   "link": "/courses/major-basic/machine-learning/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "拓扑学",
+   "link": "/courses/math/topology/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+     "期末"
+    ]
+   ]
+  },
+  {
+   "course": "微分几何",
+   "link": "/courses/math/differential-geometry/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "数值分析",
+   "link": "/courses/math/numerical-analysis/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "运筹学",
+   "link": "/courses/math/operations-research/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "偏微分方程数值解法",
+   "link": "/courses/icm/numerical-pde/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "矩阵分析",
+   "link": "/courses/icm/matrix-analysis/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+     "期末"
+    ]
+   ]
+  },
+  {
+   "course": "最优化方法",
+   "link": "/courses/icm/optimization/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "人工智能的算法基础",
+   "link": "/courses/icm/ai-algorithms/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "现代回归分析",
+   "link": "/courses/stat/regression/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "非参数统计",
+   "link": "/courses/stat/nonparametric/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "时间序列分析",
+   "link": "/courses/stat/time-series/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "多元统计分析",
+   "link": "/courses/stat/multivariate/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "贝叶斯统计",
+   "link": "/courses/stat/bayesian/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+     "期末"
+    ]
+   ]
+  },
+  {
+   "course": "解析数论",
+   "link": "/courses/other/analytic-number-theory/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "course": "数学建模",
+   "link": "/courses/other/mathematical-modeling/",
+   "cells": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  }
+ ],
+ "todo": [
+  {
+   "title": "数学分析 I-1 参考答案",
+   "course": "数学分析",
+   "note": "扫描件；对应哪份试卷待确认"
+  },
+  {
+   "title": "高等代数 期末 试卷及解析",
+   "course": "高等代数与几何",
+   "note": "与王卫的 I-2 不是同一份卷子，对应哪个班待确认"
+  },
+  {
+   "title": "高等代数与几何 试卷",
+   "course": "高等代数与几何",
+   "note": "扫描件；期中还是期末待确认"
+  },
+  {
+   "title": "常微分方程 期末（据课堂 PPT 整理）",
+   "course": "常微分方程",
+   "note": "不是原卷；年份待确认"
+  },
+  {
+   "title": "实变函数 模拟卷",
+   "course": "实变函数",
+   "note": "来源待确认"
+  },
+  {
+   "title": "解析数论讲义",
+   "course": "解析数论",
+   "note": "85 页；作者待确认"
+  }
+ ]
+}
