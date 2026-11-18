@@ -2,20 +2,14 @@
 title: 投稿
 ---
 
-缺哪些资料见 [资料征集](/guide/wanted/)。
+缺哪些资料见 [资料征集](/guide/wanted/)。投稿经维护者核对后上线。
 
 ## 问卷
 
-| 问卷 | 内容 |
-|---|---|
-| 资料投稿（链接待发布） | 试卷、笔记、复习资料，一次一份 |
-| 课程与培养方案调查（链接待发布） | 课程经验、培养方案、分流情况 |
+**资料投稿问卷**（链接待发布）：一次交一份，不用登录，手机可填。
 
-## 直接发送
+## GitHub
 
-QQ 群 / 邮箱（待定）。请注明：
-
-- 课程、学年学期、考试类型、老师；
-- 有没有答案，答案来源（官方 / 同学 / AI）。
+会用 GitHub 的同学，可以在仓库 [JackyHu0314/xjtu-math](https://github.com/JackyHu0314/xjtu-math) 提 Issue（选「资料投稿」）或 Pull Request，见 [CONTRIBUTING](https://github.com/JackyHu0314/xjtu-math/blob/main/CONTRIBUTING.md)。
 
 上传前请涂掉姓名、学号。
