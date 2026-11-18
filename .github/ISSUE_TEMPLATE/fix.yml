@@ -1,0 +1,36 @@
+name: 资料信息补充
+description: 补充或更正某份资料的班型、学期、任课老师等
+title: "[补充] "
+labels: ["信息补充"]
+body:
+  - type: input
+    id: path
+    attributes:
+      label: 资料
+      description: 从网站点「补充」进来会自动填好
+    validations:
+      required: true
+  - type: dropdown
+    id: cls
+    attributes:
+      label: 适用班型
+      options:
+        - 不确定
+        - 数学大类
+        - 强基
+        - 数学试验班
+        - 几个班共用
+  - type: input
+    id: term
+    attributes:
+      label: 学年学期
+      placeholder: 例如：2024-2025 春
+  - type: input
+    id: teacher
+    attributes:
+      label: 任课老师
+  - type: textarea
+    id: note
+    attributes:
+      label: 其他更正
+      description: 例如标题、年份写错了

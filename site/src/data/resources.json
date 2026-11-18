@@ -19,7 +19,8 @@
     "author": "",
     "contributor": "",
     "answer": true,
-    "note": "扫描件"
+    "note": "扫描件",
+    "answerPath": ""
    }
   ]
  },
@@ -53,7 +54,8 @@
     "author": "曹方涛（励志学辅）",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "实变函数 重难点突破（2025 版）",
@@ -68,7 +70,8 @@
     "author": "王晨沣 主编（励志学辅）",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    }
   ],
   "真题": [
@@ -85,7 +88,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "B 站有讲解视频 BV1995j63ESa"
+    "note": "B 站有讲解视频 BV1995j63ESa",
+    "answerPath": ""
    },
    {
     "name": "实变函数 期末",
@@ -100,12 +104,13 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2026-06-24"
+    "note": "考试日期 2026-06-24",
+    "answerPath": ""
    },
    {
     "name": "实变函数 期中",
     "ext": "PDF",
-    "path": "课程/实变函数/试卷与习题/2023届强基计划实变函数期中考试.pdf",
+    "path": "课程/实变函数/试卷与习题/2023届强基计划实变函数期中考试/2023届强基计划实变函数期中考试.pdf",
     "size": "258.5 KB",
     "term": "2024-2025-2",
     "termLabel": "24–25 春",
@@ -114,23 +119,9 @@
     "teacher": "",
     "author": "",
     "contributor": "",
-    "answer": false,
-    "note": ""
-   },
-   {
-    "name": "实变函数 期中 参考答案",
-    "ext": "PDF",
-    "path": "课程/实变函数/试卷与习题/2023届强基实变期中答案.pdf",
-    "size": "494.1 KB",
-    "term": "2024-2025-2",
-    "termLabel": "24–25 春",
-    "grade": "23级",
-    "cls": "强基",
-    "teacher": "",
-    "author": "",
-    "contributor": "",
     "answer": true,
-    "note": ""
+    "note": "",
+    "answerPath": "课程/实变函数/试卷与习题/2023届强基计划实变函数期中考试/2023届强基实变期中答案.pdf"
    },
    {
     "name": "实变函数 期末",
@@ -145,7 +136,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2025-06-17"
+    "note": "考试日期 2025-06-17",
+    "answerPath": ""
    }
   ],
   "练习题": [
@@ -162,7 +154,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "来源待确认"
+    "note": "来源待确认",
+    "answerPath": ""
    }
   ]
  },
@@ -192,7 +185,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2026-06-14"
+    "note": "考试日期 2026-06-14",
+    "answerPath": ""
    }
   ]
  },
@@ -219,7 +213,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2026-07-03"
+    "note": "考试日期 2026-07-03",
+    "answerPath": ""
    },
    {
     "name": "概率论 期末",
@@ -234,7 +229,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    }
   ]
  },
@@ -264,7 +260,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "手写笔记扫描"
+    "note": "手写笔记扫描",
+    "answerPath": ""
    },
    {
     "name": "1.5 凸集与不动点",
@@ -279,7 +276,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "手写笔记扫描"
+    "note": "手写笔记扫描",
+    "answerPath": ""
    },
    {
     "name": "3.3 紧算子的谱理论：Riesz–Schauder 理论",
@@ -294,7 +292,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "手写笔记扫描"
+    "note": "手写笔记扫描",
+    "answerPath": ""
    },
    {
     "name": "3.4 对称紧算子的谱理论：Hilbert–Schmidt 定理",
@@ -309,7 +308,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "手写笔记扫描"
+    "note": "手写笔记扫描",
+    "answerPath": ""
    },
    {
     "name": "3.6 Fredholm 算子",
@@ -324,7 +324,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "手写笔记扫描"
+    "note": "手写笔记扫描",
+    "answerPath": ""
    },
    {
     "name": "5.2 Banach 代数",
@@ -339,7 +340,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "手写笔记扫描"
+    "note": "手写笔记扫描",
+    "answerPath": ""
    },
    {
     "name": "泛函分析 定理小抄",
@@ -354,7 +356,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    }
   ],
   "练习题": [
@@ -371,7 +374,8 @@
     "author": "",
     "contributor": "",
     "answer": true,
-    "note": "手写扫描"
+    "note": "手写扫描",
+    "answerPath": ""
    }
   ],
   "真题": [
@@ -388,7 +392,8 @@
     "author": "钱院学辅",
     "contributor": "",
     "answer": false,
-    "note": "扫描件"
+    "note": "扫描件",
+    "answerPath": ""
    }
   ]
  },
@@ -417,7 +422,8 @@
     "author": "",
     "contributor": "",
     "answer": true,
-    "note": "与王卫的 I-2 不是同一份卷子，对应哪个班待确认"
+    "note": "与王卫的 I-2 不是同一份卷子，对应哪个班待确认",
+    "answerPath": ""
    },
    {
     "name": "高等代数与几何 I-2 期末",
@@ -432,7 +438,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2026-06-22"
+    "note": "考试日期 2026-06-22",
+    "answerPath": ""
    },
    {
     "name": "高等代数与几何 I-1 期末",
@@ -447,7 +454,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2026-01-12"
+    "note": "考试日期 2026-01-12",
+    "answerPath": ""
    },
    {
     "name": "高等代数与解析几何 1 期末",
@@ -462,7 +470,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2012-07-20"
+    "note": "考试日期 2012-07-20",
+    "answerPath": ""
    },
    {
     "name": "高等代数与解析几何 1 期末（LaTeX 源文件）",
@@ -477,7 +486,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "高等代数与几何 试卷",
@@ -492,7 +502,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "扫描件；期中还是期末待确认"
+    "note": "扫描件；期中还是期末待确认",
+    "answerPath": ""
    }
   ]
  },
@@ -511,7 +522,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "数理统计课程简介(MATH325207)",
@@ -526,7 +538,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    }
   ]
  },
@@ -545,7 +558,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "学习代数几何的建议 袁新意 (2026.4.29 v2.2)",
@@ -560,7 +574,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    }
   ]
  },
@@ -579,7 +594,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "2024代数与数论暑期学校笔试",
@@ -594,12 +610,13 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
-    "name": "2025代数与数论暑期学校笔试",
+    "name": "2025 代数与数论暑期学校笔试",
     "ext": "PDF",
-    "path": "竞赛与暑校/代数与数论暑期学校/2025代数与数论暑期学校笔试.pdf",
+    "path": "竞赛与暑校/代数与数论暑期学校/2025代数与数论暑期学校笔试/2025代数与数论暑期学校笔试.pdf",
     "size": "345.6 KB",
     "term": "",
     "termLabel": "",
@@ -608,23 +625,9 @@
     "teacher": "",
     "author": "",
     "contributor": "",
-    "answer": false,
-    "note": ""
-   },
-   {
-    "name": "2025代数与数论暑期学校笔试答案",
-    "ext": "PDF",
-    "path": "竞赛与暑校/代数与数论暑期学校/2025代数与数论暑期学校笔试答案.pdf",
-    "size": "512.9 KB",
-    "term": "",
-    "termLabel": "",
-    "grade": "",
-    "cls": "",
-    "teacher": "",
-    "author": "",
-    "contributor": "",
-    "answer": false,
-    "note": ""
+    "answer": true,
+    "note": "",
+    "answerPath": "竞赛与暑校/代数与数论暑期学校/2025代数与数论暑期学校笔试/2025代数与数论暑期学校笔试答案.pdf"
    },
    {
     "name": "2026提高班试卷中文",
@@ -639,7 +642,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    }
   ]
  },
@@ -658,7 +662,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "含数学分析 II-2（马跃，MATH294607）等"
+    "note": "含数学分析 II-2（马跃，MATH294607）等",
+    "answerPath": ""
    }
   ]
  },
@@ -677,7 +682,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "发数学学院2025-2026学年小学期讲座安排",
@@ -692,7 +698,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "因果推断讨论班",
@@ -707,7 +714,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    }
   ]
  },
@@ -726,7 +734,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2026-06-28"
+    "note": "考试日期 2026-06-28",
+    "answerPath": ""
    },
    {
     "name": "复变函数 期末",
@@ -741,7 +750,8 @@
     "author": "刘家铭（整理）",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2026-06-26"
+    "note": "考试日期 2026-06-26",
+    "answerPath": ""
    },
    {
     "name": "复变函数 期末 A 卷答案与评分标准",
@@ -756,7 +766,8 @@
     "author": "",
     "contributor": "",
     "answer": true,
-    "note": "官方评分标准；考试日期 2025-06-26"
+    "note": "官方评分标准；考试日期 2025-06-26",
+    "answerPath": ""
    }
   ]
  },
@@ -765,7 +776,7 @@
    {
     "name": "常微分方程 期末（据课堂 PPT 整理）",
     "ext": "PDF",
-    "path": "课程/常微分方程/试卷与习题/2024ODE期末考试-孙小丹.pdf",
+    "path": "课程/常微分方程/试卷与习题/2024ODE期末考试-孙小丹/2024ODE期末考试-孙小丹.pdf",
     "size": "380.2 KB",
     "term": "",
     "termLabel": "",
@@ -774,23 +785,9 @@
     "teacher": "孙小丹",
     "author": "",
     "contributor": "",
-    "answer": false,
-    "note": "不是原卷；年份待确认"
-   },
-   {
-    "name": "常微分方程 期末（据课堂 PPT 整理）参考答案",
-    "ext": "PDF",
-    "path": "课程/常微分方程/试卷与习题/2024ODE期末考试参考答案，AI生成人工校对.pdf",
-    "size": "583.1 KB",
-    "term": "",
-    "termLabel": "",
-    "grade": "",
-    "cls": "",
-    "teacher": "孙小丹",
-    "author": "AI 生成，人工校对",
-    "contributor": "",
     "answer": true,
-    "note": "对应「常微分方程 期末（据课堂 PPT 整理）」"
+    "note": "不是原卷；年份待确认；答案为 AI 生成、人工校对",
+    "answerPath": "课程/常微分方程/试卷与习题/2024ODE期末考试-孙小丹/2024ODE期末考试参考答案，AI生成人工校对.pdf"
    }
   ],
   "真题": [
@@ -807,7 +804,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "数学强基 2401、2402；考试日期 2026-01-07"
+    "note": "数学强基 2401、2402；考试日期 2026-01-07",
+    "answerPath": ""
    },
    {
     "name": "常微分方程 期末（原题）",
@@ -822,7 +820,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2024-01-02"
+    "note": "考试日期 2024-01-02",
+    "answerPath": ""
    }
   ]
  },
@@ -841,7 +840,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2023-12-16"
+    "note": "考试日期 2023-12-16",
+    "answerPath": ""
    },
    {
     "name": "近世代数 期末（回忆版）",
@@ -856,7 +856,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2024-02-05；部分选项记不清"
+    "note": "考试日期 2024-02-05；部分选项记不清",
+    "answerPath": ""
    }
   ]
  },
@@ -875,7 +876,8 @@
     "author": "曹方涛（励志学辅）",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "多元函数微积分常用记号",
@@ -890,7 +892,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "某教材附录 C"
+    "note": "某教材附录 C",
+    "answerPath": ""
    }
   ],
   "真题": [
@@ -907,12 +910,13 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2026-07-02"
+    "note": "考试日期 2026-07-02",
+    "answerPath": ""
    },
    {
     "name": "数学分析 II-2 期中",
     "ext": "PDF",
-    "path": "课程/数学分析/试卷与习题/数学分析期中考试_2026年5月.pdf",
+    "path": "课程/数学分析/试卷与习题/数学分析期中考试_2026年5月/数学分析期中考试_2026年5月.pdf",
     "size": "40.5 KB",
     "term": "2025-2026-2",
     "termLabel": "25–26 春",
@@ -921,23 +925,9 @@
     "teacher": "陆亚明",
     "author": "",
     "contributor": "",
-    "answer": false,
-    "note": "考试日期 2026-05-08"
-   },
-   {
-    "name": "数学分析 II-2 期中 答案",
-    "ext": "PDF",
-    "path": "课程/数学分析/试卷与习题/26春数学分析II-2期中考试题答案.pdf",
-    "size": "436.7 KB",
-    "term": "2025-2026-2",
-    "termLabel": "25–26 春",
-    "grade": "",
-    "cls": "",
-    "teacher": "陆亚明",
-    "author": "",
-    "contributor": "",
     "answer": true,
-    "note": "与上一份是同一场考试"
+    "note": "考试日期 2026-05-08",
+    "answerPath": "课程/数学分析/试卷与习题/数学分析期中考试_2026年5月/26春数学分析II-2期中考试题答案.pdf"
    },
    {
     "name": "数学分析 II-2 期末",
@@ -952,7 +942,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2026-06-23"
+    "note": "考试日期 2026-06-23",
+    "answerPath": ""
    },
    {
     "name": "数学分析 I-1 期末",
@@ -967,7 +958,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2026-01-08"
+    "note": "考试日期 2026-01-08",
+    "answerPath": ""
    },
    {
     "name": "数学分析 I-1 期末",
@@ -982,7 +974,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2024-01-04"
+    "note": "考试日期 2024-01-04",
+    "answerPath": ""
    },
    {
     "name": "数学分析 I-1 期末",
@@ -997,7 +990,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2024-01-04"
+    "note": "考试日期 2024-01-04",
+    "answerPath": ""
    },
    {
     "name": "数学分析 I-2 期中",
@@ -1012,7 +1006,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "数学分析 I-2 期末",
@@ -1027,7 +1022,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "试卷抬头写的是「数学分析II」"
+    "note": "试卷抬头写的是「数学分析II」",
+    "answerPath": ""
    },
    {
     "name": "数学分析 I-1 期末（A 卷）",
@@ -1042,7 +1038,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "数学分析 I-1 第一次月考",
@@ -1057,7 +1054,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "数学分析 I-1 第三次月考",
@@ -1072,7 +1070,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "数学分析 I-1 第二次月考",
@@ -1087,7 +1086,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    },
    {
     "name": "数学分析 I-1 参考答案",
@@ -1102,7 +1102,8 @@
     "author": "钱院学辅",
     "contributor": "",
     "answer": true,
-    "note": "扫描件；对应哪份试卷待确认"
+    "note": "扫描件；对应哪份试卷待确认",
+    "answerPath": ""
    },
    {
     "name": "数学分析 I-1 期末（2022）参考答案",
@@ -1117,7 +1118,8 @@
     "author": "",
     "contributor": "",
     "answer": true,
-    "note": "只有答案"
+    "note": "只有答案",
+    "answerPath": ""
    },
    {
     "name": "数学分析 I-2 期末 A 卷答案与评分标准（2022）",
@@ -1132,7 +1134,8 @@
     "author": "",
     "contributor": "",
     "answer": true,
-    "note": "只有答案"
+    "note": "只有答案",
+    "answerPath": ""
    }
   ]
  },
@@ -1151,7 +1154,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "考试日期 2026-06-14"
+    "note": "考试日期 2026-06-14",
+    "answerPath": ""
    }
   ]
  },
@@ -1170,7 +1174,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": "85 页；作者待确认"
+    "note": "85 页；作者待确认",
+    "answerPath": ""
    }
   ]
  },
@@ -1189,7 +1194,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    }
   ]
  },
@@ -1208,7 +1214,8 @@
     "author": "",
     "contributor": "",
     "answer": false,
-    "note": ""
+    "note": "",
+    "answerPath": ""
    }
   ]
  }

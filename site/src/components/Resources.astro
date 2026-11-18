@@ -16,12 +16,18 @@ const groups = Object.keys(data)
 const fileUrl = (p: string) => base + '/' + p.split('/').map(encodeURIComponent).join('/');
 // PDF 用 PDF.js 在线预览，其他格式直接下载
 const previewUrl = (f: any) => (f.ext === 'PDF' ? '/pdfjs/web/viewer.html?file=' + encodeURIComponent(fileUrl(f.path)) : fileUrl(f.path));
+// 真题、练习题不知道班型时，标「未知」并给出补充链接（GitHub「资料信息补充」表单，预填资料路径）
+const REPO = 'https://github.com/JackyHu0314/xjtu-math';
+const needInfo = (g: string) => g === '真题' || g === '练习题';
+groups.forEach((g) => data[g].forEach((f: any) => (f.needCls = needInfo(g) && !f.cls)));
+const fixUrl = (f: any) =>
+	`${REPO}/issues/new?template=fix.yml&title=${encodeURIComponent('[补充] ' + f.name)}&path=${encodeURIComponent(f.path)}`;
 // 每份资料下方的带字段名信息
 const fields = (f: any) =>
 	[
 		['学期', f.termLabel],
 		['年级', f.grade],
-		['班型', f.cls],
+		['班型', f.cls || (f.needCls ? '未知' : '')],
 		['任课', f.teacher],
 		['作者', f.author],
 		['上传', f.contributor],
@@ -81,6 +87,12 @@ const filterGroups = [
 								</span>
 								<span class="sz">{f.size}</span>
 							</a>
+							{f.answerPath && (
+								<a class="anslink" href={previewUrl({ ext: f.answerPath.split('.').pop().toUpperCase(), path: f.answerPath })} target="_blank" rel="noopener">答案</a>
+							)}
+							{f.needCls && (
+								<a class="fix" href={fixUrl(f)} target="_blank" rel="noopener" title="补充这份资料适用的班型">补充班型</a>
+							)}
 							<a class="dl" href={fileUrl(f.path)} download title="下载" aria-label={`下载 ${f.name}`}>↓</a>
 						</div>
 					))}
@@ -278,6 +290,37 @@ const filterGroups = [
 		font-size: 0.8rem;
 		color: var(--muted);
 		font-variant-numeric: tabular-nums;
+	}
+	.anslink {
+		flex: none;
+		margin-right: 0.6rem;
+		font-size: 0.78rem;
+		font-weight: 500;
+		padding: 0.18rem 0.7rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, #5db872 16%, transparent);
+		color: #3f8f53;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+	.anslink:hover {
+		background: #3f8f53;
+		color: #fff;
+	}
+	.fix {
+		flex: none;
+		margin-right: 0.6rem;
+		font-size: 0.75rem;
+		padding: 0.15rem 0.6rem;
+		border-radius: 999px;
+		border: 1px dashed var(--line);
+		color: var(--muted);
+		text-decoration: none;
+		white-space: nowrap;
+	}
+	.fix:hover {
+		border-color: var(--clay);
+		color: var(--clay);
 	}
 	.dl {
 		flex: none;

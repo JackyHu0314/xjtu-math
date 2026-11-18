@@ -88,6 +88,8 @@ def load_meta():
 def scan():
     res = {}
     meta = load_meta()
+    # 作为某道题「答案文件」的文件，不单独列出，并入题目那一条
+    answer_files = {r['答案文件'] for r in meta.values() if r.get('答案文件')}
     for f in sorted(DATA_DIR.rglob('*')):
         if not f.is_file() or f.name.startswith('.') or f.suffix == '.csv':
             continue
@@ -98,6 +100,8 @@ def scan():
             res.setdefault(course, {}).setdefault('books', []).append(f.stem)
             continue
         if any(p in SKIP for p in parts):
+            continue
+        if rel.as_posix() in answer_files:
             continue
         if parts[0] == '课程':
             course, typ = parts[1], parts[2]
@@ -119,6 +123,7 @@ def scan():
             'contributor': m.get('上传人', ''),
             'answer': m.get('答案', '') == '有',
             'note': m.get('备注', ''),
+            'answerPath': m.get('答案文件', ''),
         }
         res.setdefault(course, {}).setdefault(typ, []).append(item)
     for c in res.values():
