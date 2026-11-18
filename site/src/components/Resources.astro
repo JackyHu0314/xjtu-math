@@ -29,8 +29,6 @@ groups.forEach((g) =>
 const unknown = (f: any, k: string, label: string) => f[k] || (f.missing?.includes(label) ? '未知' : '');
 // 本课程投稿链接：GitHub「资料投稿」表单，预填课程名
 const submitUrl = `${REPO}/issues/new?template=submit.yml&title=${encodeURIComponent('[投稿] ' + course)}&course=${encodeURIComponent(course)}`;
-const fixUrl = (f: any) =>
-	`${REPO}/issues/new?template=fix.yml&title=${encodeURIComponent('[补充] ' + f.name)}&path=${encodeURIComponent(f.path)}`;
 // 每份资料下方的带字段名信息
 const fields = (f: any) =>
 	[
@@ -104,7 +102,7 @@ const filterGroups = [
 							)}
 							<a class="dl" href={fileUrl(f.path)} download title="下载" aria-label={`下载 ${f.name}`}>↓</a>
 							{f.needFix && (
-								<a class="fix" href={fixUrl(f)} target="_blank" rel="noopener" title={`缺：${f.missing.join('、')}`}>补充信息</a>
+								<button type="button" class="fix" data-path={f.path} data-title={f.name} title={`缺：${f.missing.join('、')}`}>补充信息</button>
 							)}
 						</div>
 					))}
@@ -128,9 +126,85 @@ const filterGroups = [
 			</section>
 		)
 	}
+	<form class="fb" hidden>
+		<div class="fb-title"></div>
+		<div class="fb-row">
+			<label>班型
+				<select name="cls">
+					<option value="">不填</option>
+					<option>数学大类</option>
+					<option>强基</option>
+					<option>数学试验班</option>
+					<option>几个班共用</option>
+				</select>
+			</label>
+			<label>学期<input name="term" maxlength="40" placeholder="如 2024-2025 春" /></label>
+			<label>任课老师<input name="teacher" maxlength="40" /></label>
+		</div>
+		<label class="fb-note">其他<input name="note" maxlength="500" placeholder="例如年份写错了" /></label>
+		<div class="fb-actions">
+			<span class="fb-msg"></span>
+			<button type="button" class="fb-cancel">取消</button>
+			<button type="submit" class="fb-submit">提交</button>
+		</div>
+	</form>
 </div>
 
 <script>
+	// 补充信息：点按钮在该资料下方展开表单，提交到 /api/feedback（不需要登录）
+	document.querySelectorAll<HTMLElement>('.res').forEach((root) => {
+		const form = root.querySelector<HTMLFormElement>('.fb');
+		if (!form) return;
+		const msg = form.querySelector<HTMLElement>('.fb-msg')!;
+		let current: HTMLButtonElement | null = null;
+		const close = () => {
+			form.hidden = true;
+			form.reset();
+			msg.textContent = '';
+			current = null;
+		};
+		root.querySelectorAll<HTMLButtonElement>('.fix').forEach((btn) =>
+			btn.addEventListener('click', () => {
+				if (current === btn) return close();
+				close();
+				current = btn;
+				form.querySelector<HTMLElement>('.fb-title')!.textContent = '补充：' + btn.dataset.title + '（' + btn.title + '）';
+				btn.closest('.res-item')!.after(form);
+				form.hidden = false;
+			}),
+		);
+		form.querySelector('.fb-cancel')!.addEventListener('click', close);
+		form.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			if (!current) return;
+			const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+			if (!data.cls && !data.term?.trim() && !data.teacher?.trim() && !data.note?.trim()) {
+				msg.textContent = '至少填一项';
+				return;
+			}
+			msg.textContent = '提交中…';
+			try {
+				const res = await fetch('/api/feedback', {
+					method: 'POST',
+					headers: { 'content-type': 'application/json' },
+					body: JSON.stringify({ ...data, path: current.dataset.path, title: current.dataset.title }),
+				});
+				const out = await res.json().catch(() => ({}));
+				if (res.ok && out.ok) {
+					msg.textContent = '已收到，审核后更新。谢谢！';
+					const btn = current;
+					btn.textContent = '已提交';
+					btn.disabled = true;
+					setTimeout(close, 1800);
+				} else {
+					msg.textContent = out.error || '提交失败，请稍后再试';
+				}
+			} catch {
+				msg.textContent = '网络错误，请稍后再试';
+			}
+		});
+	});
+
 	document.querySelectorAll<HTMLElement>('.res').forEach((root) => {
 		const state: Record<string, string> = {};
 		const apply = () => {
@@ -370,6 +444,82 @@ const filterGroups = [
 		color: var(--muted);
 		text-decoration: none;
 		white-space: nowrap;
+	}
+	.fix {
+		font: inherit;
+		font-size: 0.75rem;
+		background: none;
+		cursor: pointer;
+	}
+	.fix:disabled {
+		cursor: default;
+		border-style: solid;
+	}
+	.fb {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: 0.9rem 1.1rem;
+		border-top: 1px solid var(--line);
+		background: var(--surface);
+		font-size: 0.85rem;
+	}
+	.fb[hidden] {
+		display: none;
+	}
+	.fb-title {
+		font-weight: 500;
+		color: var(--ink);
+	}
+	.fb-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem 1rem;
+	}
+	.fb label {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		color: var(--muted);
+	}
+	.fb-note input {
+		flex: 1;
+	}
+	.fb input,
+	.fb select {
+		font: inherit;
+		font-size: 0.85rem;
+		padding: 0.3rem 0.5rem;
+		border: 1px solid var(--line);
+		border-radius: 6px;
+		background: var(--paper);
+		color: var(--ink);
+		min-width: 0;
+	}
+	.fb-actions {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.6rem;
+	}
+	.fb-msg {
+		margin-right: auto;
+		color: var(--muted);
+	}
+	.fb-actions button {
+		font: inherit;
+		font-size: 0.85rem;
+		padding: 0.3rem 0.9rem;
+		border-radius: 6px;
+		border: 1px solid var(--line);
+		background: var(--paper);
+		color: var(--ink);
+		cursor: pointer;
+	}
+	.fb-actions .fb-submit {
+		background: var(--clay);
+		border-color: var(--clay);
+		color: #fff;
 	}
 	.fix:hover {
 		border-color: var(--clay);

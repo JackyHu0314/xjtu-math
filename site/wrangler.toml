@@ -1,0 +1,9 @@
+# Cloudflare Pages 配置：网站 + 补充信息接口（functions/api/feedback.js）
+name = "xjtu-math-materials"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "xjtu-math-feedback"
+database_id = "a7a402ae-c81f-4f08-8ac7-2f685d85a39d"
