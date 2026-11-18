@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "sync": "python3 scripts/sync.py",
-    "deploy": "python3 scripts/sync.py && astro build && wrangler pages deploy dist --project-name xjtu-math-materials --branch production --commit-dirty=true"
+    "deploy": "python3 scripts/sync.py && astro build && wrangler pages deploy dist --project-name xjtu-math-materials --branch production --commit-dirty=true",
+    "feedback": "wrangler d1 execute xjtu-math-feedback --remote --command \"SELECT id, datetime(created/1000,'unixepoch','+8 hours') AS 时间, title AS 资料, cls AS 班型, term AS 学期, teacher AS 任课, note AS 其他 FROM feedback WHERE status='new' ORDER BY id\""
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.9",
