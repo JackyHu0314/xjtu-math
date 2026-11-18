@@ -141,12 +141,12 @@ h1#_top {
 .sl-markdown-content {
 	line-height: 1.8;
 }
-.sl-markdown-content a:not(.main):not(.dl):not(.pill) {
+.sl-markdown-content a:not(.main):not(.dl):not(.pill):not(.submit):not(.anslink):not(.fix) {
 	color: var(--clay);
 	text-decoration-color: color-mix(in srgb, var(--clay) 35%, transparent);
 	text-underline-offset: 3px;
 }
-.sl-markdown-content a:not(.main):not(.dl):not(.pill):hover {
+.sl-markdown-content a:not(.main):not(.dl):not(.pill):not(.submit):not(.anslink):not(.fix):hover {
 	text-decoration-color: var(--clay);
 }
 

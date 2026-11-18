@@ -20,6 +20,8 @@ const previewUrl = (f: any) => (f.ext === 'PDF' ? '/pdfjs/web/viewer.html?file='
 const REPO = 'https://github.com/JackyHu0314/xjtu-math';
 const needInfo = (g: string) => g === '真题' || g === '练习题';
 groups.forEach((g) => data[g].forEach((f: any) => (f.needCls = needInfo(g) && !f.cls)));
+// 本课程投稿链接：GitHub「资料投稿」表单，预填课程名
+const submitUrl = `${REPO}/issues/new?template=submit.yml&title=${encodeURIComponent('[投稿] ' + course)}&course=${encodeURIComponent(course)}`;
 const fixUrl = (f: any) =>
 	`${REPO}/issues/new?template=fix.yml&title=${encodeURIComponent('[补充] ' + f.name)}&path=${encodeURIComponent(f.path)}`;
 // 每份资料下方的带字段名信息
@@ -43,6 +45,9 @@ const filterGroups = [
 ---
 
 <div class="res not-content" id="res">
+	<div class="submit-row">
+		<a class="submit" href={submitUrl} target="_blank" rel="noopener">投稿本课程资料</a>
+	</div>
 	{
 		filterGroups.length > 0 && (
 			<div class="filters">
@@ -59,7 +64,7 @@ const filterGroups = [
 		)
 	}
 	<div class="empty none" hidden>没有符合条件的资料。</div>
-	{groups.length === 0 && <div class="empty">暂无资料。<a href="/guide/contribute/">投稿</a></div>}
+	{groups.length === 0 && <div class="empty">暂无资料。</div>}
 	{
 		groups.map((g) => (
 			<section>
@@ -149,6 +154,23 @@ const filterGroups = [
 		flex-direction: column;
 		gap: 2rem;
 		margin-top: 1rem;
+	}
+	.submit-row {
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: -1rem;
+	}
+	.submit {
+		font-size: 0.85rem;
+		font-weight: 500;
+		padding: 0.4rem 0.95rem;
+		border-radius: 8px;
+		background: var(--clay);
+		color: #fff !important;
+		text-decoration: none;
+	}
+	.submit:hover {
+		background: var(--clay-active);
 	}
 	.filters {
 		display: flex;
