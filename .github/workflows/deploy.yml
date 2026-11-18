@@ -33,7 +33,17 @@ jobs:
 
       - name: 发布到 Cloudflare Pages
         if: github.event_name != 'pull_request'
-        run: npx wrangler pages deploy dist --project-name xjtu-math-materials --branch production --commit-dirty=true
+        run: |
+          [ -n "$CLOUDFLARE_API_TOKEN" ] || { echo "::error::缺少 secret CLOUDFLARE_API_TOKEN"; exit 1; }
+          [ -n "$CLOUDFLARE_ACCOUNT_ID" ] || { echo "::error::缺少 secret CLOUDFLARE_ACCOUNT_ID"; exit 1; }
+          set +e
+          npx wrangler pages deploy dist --project-name xjtu-math-materials --branch production --commit-dirty=true 2>&1 | tee deploy.log
+          code=${PIPESTATUS[0]}
+          if [ "$code" != 0 ]; then
+            # 把报错摘要写成 annotation，不登录也能看到
+            echo "::error::$(grep -iE 'error|✘|authentication|permission' deploy.log | head -5 | tr '\n' ' ' | cut -c1-600)"
+          fi
+          exit $code
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
